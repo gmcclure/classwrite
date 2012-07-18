@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block nav %}
+<h1>Dashboard</h1>
+<div id="context_navigation">
+    <a href="/library/catalog/">Library</a> &#x7c;
+    <a href="/class/join/">Join a Class</a> &#x7c; 
+    <a href="/class/create/">Create a New Class</a>
+</div>
+{% endblock %}
+
+{% block content %}
+    {% if messages %}
+    <div class="dashboard_section">
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ messages.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    {% if instructor_classes %}
+    <div class="dashboard_section">
+        <h2>Instructor Classes</h2>
+        <ul class="class_list">
+        {% for class in instructor_classes %}
+        <li><a href="/class/{{ class.id }}/overview/">{{ class.code }}</a> <span class="sep">::</span> 
+            <a href="/class/{{ class.id }}/overview/">Overview</a> <span class="sep">&#x7c;</span> <a href="/class/{{ class.id }}/overview/#assignments">Assignments</a> <span class="sep">&#x7c;</span> <a href="/class/{{ class.id }}/calendar/">Calendar</a> <span class="sep">&#x7c;</span> <a href="/class/{{ class.id }}/overview/#syllabus">Syllabus</li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <div class="dashboard_section">
+        <h2>Student Classes</h2>
+        {% if student_classes %}
+        <ul class="class_list">
+        {% for class in student_classes %}
+        <li>{{ class.code }} :: Home &#x7c; Assignments &#x7c; Calendar &#x7c; Syllabus</li>
+        {% endfor %}
+        </ul>
+        {% else %}
+        <ul class="messages">
+            <li class="info">You haven't taken any classes yet.</li>
+        </ul>
+        {% endif %}
+    </div>
+
+{% endblock %}

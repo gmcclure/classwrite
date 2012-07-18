@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+        <meta charset="utf-8" />
+        <meta name="google-site-verification" content="W8EMynmnTAghhmVds3T6y1KEZHIXCn_UTn2qVf-Vt5Y" />
+
+        <title>{% block title %}ClassWrite{% endblock %}</title>
+
+        <link rel="stylesheet" type="text/css" href="/_/css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="/_/css/smoothness/jquery-ui-1.8.11.custom.css" />
+        <link rel="stylesheet" type="text/css" href="/_/css/main.css" />
+
+        {% block css_additional %}{% endblock %}
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
+        {% block javascript_additional %}{% endblock %}
+	</head>
+    <body>
+
+        <div id="header">
+        {% include 'topbar.html' %}
+        </div>
+
+        <div id="nav">
+        {% block nav %}{% endblock %}
+        </div>
+
+        <div id="content">
+        {% block content %}{% endblock %}
+        </div>
+
+    </body>
+</html>

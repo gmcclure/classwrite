@@ -1,0 +1,7 @@
+<div id="logo"><a href="/">ClassWrite</a></div>
+
+{% if user.is_authenticated %}
+    User: {{ user.username }} &#x2223; <a href="/dashboard/">Dashboard</a> &#x2223; <a href="/logout/">Logout</a>
+{% else %}
+    Please log in <a rel="nofollow" id="google_login" href="/login/google-oauth/">via Google</a>.
+{% endif %}
