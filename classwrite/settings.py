@@ -1,22 +1,24 @@
+import os
+
 # Django settings for classwrite project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('G McClure', 'gmcclure@thirdstone.net'),
 )
 
 MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE'   : 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME'     : 'classwrite',                             # Or path to database file if using sqlite3.
+        'USER'     : 'scrivener',                              # Not used with sqlite3.
+        'PASSWORD' : 'OhE8euQug9Hd',                           # Not used with sqlite3.
+        'HOST'     : 'localhost',                              # Set to empty string for localhost. Not used with sqlite3.
+        'PORT'     : '',                                       # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -27,7 +29,7 @@ DATABASES = {
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'America/Los_Angeles'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -42,6 +44,8 @@ USE_I18N = True
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale.
 USE_L10N = True
+
+PROJECT_ROOT = os.path.dirname(__file__)
 
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
@@ -59,17 +63,15 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = os.path.abspath(os.path.join(PROJECT_ROOT, '_'))
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+STATIC_URL = '/_/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    os.path.abspath(os.path.join(PROJECT_ROOT, 'static')),
 )
 
 # List of finder classes that know how to find static files in
@@ -109,6 +111,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.abspath(os.path.join(PROJECT_ROOT, 'templates')),
 )
 
 INSTALLED_APPS = (
@@ -118,10 +121,11 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'django.contrib.markup',
+    'social_auth',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -152,3 +156,26 @@ LOGGING = {
         },
     }
 }
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.google.GoogleOAuthBackend',
+    'social_auth.backends.google.GoogleOAuth2Backend',
+    'social_auth.backends.google.GoogleBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+LOGIN_URL                         = '/login/'
+LOGIN_REDIRECT_URL                = '/'
+LOGIN_ERROR                       = '/login/'
+
+GOOGLE_CONSUMER_KEY            = 'www.classwrite.com'
+GOOGLE_CONSUMER_SECRET         = 'v7KvBA3mumiodz7xBgNn3yCS'
+GOOGLE_DISPLAY_NAME            = 'ClassWrite'
+
+SOCIAL_AUTH_ERROR_KEY          = 'social_errors'
+SOCIAL_AUTH_COMPLETE_URL_NAME  = 'socialauth_complete'
+SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
+SOCIAL_AUTH_DEFAULT_USERNAME   = 'new_writer'
+SOCIAL_AUTH_EXPIRATION         = 'expires'
+
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
