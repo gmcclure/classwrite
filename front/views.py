@@ -9,7 +9,7 @@ def welcome(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/front/')
 
-    return render_to_response('front/welcome.html', context_instance=RequestContext(request))
+    return render_to_response('welcome.html', context_instance=RequestContext(request))
 
 @login_required
 def index(request):
@@ -18,7 +18,7 @@ def index(request):
     # return render_to_response('front/index.html',
     #         { 'instructor_classes': instructor_classes, 'student_classes': student_classes.all() },
     #         context_instance=RequestContext(request))
-    return render_to_response('front/index.html', {}, context_instance=RequestContext(request))
+    return render_to_response('index.html', {}, context_instance=RequestContext(request))
 
 def logout_session(request):
     logout(request)
