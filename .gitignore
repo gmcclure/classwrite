@@ -1,0 +1,4 @@
+*.pyc
+snippets/
+*.vim
+.idea/
