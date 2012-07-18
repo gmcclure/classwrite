@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'django.contrib.markup',
     'social_auth',
+    'front',
 )
 
 # A sample logging configuration. The only tangible logging
