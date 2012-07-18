@@ -19,17 +19,32 @@
 	</head>
     <body>
 
-        <div id="header">
-        {% include 'topbar.html' %}
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="/">ClassWrite</a>
+
+                    <ul class="nav pull-right">
+                        <li>
+                            {% if user.is_authenticated %}
+                            <p class="navbar-text">User: {{ user.username }} &#x2223; <a href="/dashboard/">Dashboard</a> &#x2223; <a href="/logout/">Logout</a></p>
+                            {% else %}
+                            <p class="navbar-text">Please log in <a rel="nofollow" id="google_login" href="/login/google-oauth/">via Google</a></p>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <div id="nav">
-        {% block nav %}{% endblock %}
+        <div class="container">
+            <div class="row">
+                <div class="span6 offset3">
+                    <div id="content">
+                    {% block content %}{% endblock %}
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div id="content">
-        {% block content %}{% endblock %}
-        </div>
-
     </body>
 </html>
