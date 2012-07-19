@@ -3,3 +3,4 @@ snippets/
 *.vim
 .idea/
 classwrite/_/
+classwrite/static/.sass-cache/

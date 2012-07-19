@@ -1,0 +1,20 @@
+@import "bootstrap";
+
+$navbarBackground: #05385f;
+$navbarBackgroundHighlight: #0f5992;
+
+body {
+    font-family: 'Cantarell', Arial, 'Helvetica Neue', Helvetica, sans-serif; 
+}
+
+.navbar {
+    color: white;
+
+    .brand {
+        color: white;
+    }
+}
+
+.navbar-inner {
+    @include gradient-vertical($navbarBackgroundHighlight, $navbarBackground);
+}
