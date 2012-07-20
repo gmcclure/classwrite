@@ -5452,29 +5452,42 @@ a.label:hover, a.badge:hover {
   visibility: hidden;
 }
 
-/* line 6, ../sass/custom.scss */
+/* line 8, ../sass/custom.scss */
 body {
-  font-family: 'Cantarell', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: 'Cantarell', sans-serif;
+}
+/* line 10, ../sass/custom.scss */
+body h1, body h2, body h3, body h4, body h5, body h6 {
+  font-family: 'Lustria', serif;
 }
 
-/* line 10, ../sass/custom.scss */
+/* line 15, ../sass/custom.scss */
 .navbar {
   color: white;
 }
-/* line 13, ../sass/custom.scss */
+/* line 18, ../sass/custom.scss */
 .navbar .brand {
   color: white;
+  font-family: 'Lustria', serif;
+}
+/* line 23, ../sass/custom.scss */
+.navbar .navbar-link {
+  color: #ff6766;
+}
+/* line 25, ../sass/custom.scss */
+.navbar .navbar-link:hover {
+  color: #f06060;
 }
 
-/* line 18, ../sass/custom.scss */
+/* line 31, ../sass/custom.scss */
 .navbar-inner {
-  background-color: #0b4b7d;
-  background-image: -moz-linear-gradient(top, #0f5992, #05385f);
-  background-image: -ms-linear-gradient(top, #0f5992, #05385f);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0f5992), to(#05385f));
-  background-image: -webkit-linear-gradient(top, #0f5992, #05385f);
-  background-image: -o-linear-gradient(top, #0f5992, #05385f);
-  background-image: linear-gradient(top, #0f5992, #05385f);
+  background-color: #02a5d7;
+  background-image: -moz-linear-gradient(top, #02a9dd, #02a0d0);
+  background-image: -ms-linear-gradient(top, #02a9dd, #02a0d0);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#02a9dd), to(#02a0d0));
+  background-image: -webkit-linear-gradient(top, #02a9dd, #02a0d0);
+  background-image: -o-linear-gradient(top, #02a9dd, #02a0d0);
+  background-image: linear-gradient(top, #02a9dd, #02a0d0);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0f568d', endColorstr='#05355a', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#02a5d8', endColorstr='#029ccb', GradientType=0);
 }

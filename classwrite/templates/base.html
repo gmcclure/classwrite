@@ -6,9 +6,8 @@
 
         <title>{% block title %}ClassWrite{% endblock %}</title>
 
-        {# <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" /> #}
-        {# <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css" /> #}
         <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Cantarell:400,700,400italic,700italic' type='text/css' />
+        <link href='http://fonts.googleapis.com/css?family=Lustria' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{{ STATIC_URL }}css/custom.css" />
 
         {% block css_additional %}{% endblock %}
@@ -28,7 +27,7 @@
                             {% if user.is_authenticated %}
                             <p class="navbar-text">User: {{ user.username }} &#x2223; <a href="/dashboard/">Dashboard</a> &#x2223; <a href="/logout/">Logout</a></p>
                             {% else %}
-                            <p class="navbar-text">Please log in <a rel="nofollow" id="google_login" href="/login/google-oauth/">via Google</a></p>
+                            <p class="navbar-text">Please log in <a class="navbarLink" rel="nofollow" id="google_login" href="/login/google-oauth/">via Google</a></p>
                             {% endif %}
                         </li>
                     </ul>
@@ -38,7 +37,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="span6 offset3">
+                <div class="span8 offset2">
                     <div id="content">
                     {% block content %}{% endblock %}
                     </div>

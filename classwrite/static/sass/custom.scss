@@ -1,10 +1,15 @@
 @import "bootstrap";
 
-$navbarBackground: #05385f;
-$navbarBackgroundHighlight: #0f5992;
+$navbarBackground: #02a0d0;
+$navbarBackgroundHighlight: #02a9dd;
+$navbarLinkColor: #ff6766;
+$navbarLinkColorHover: #f06060;
 
 body {
-    font-family: 'Cantarell', Arial, 'Helvetica Neue', Helvetica, sans-serif; 
+    font-family: 'Cantarell', sans-serif;
+    h1,h2,h3,h4,h5,h6 {
+        font-family: 'Lustria', serif; 
+    }
 }
 
 .navbar {
@@ -12,6 +17,14 @@ body {
 
     .brand {
         color: white;
+        font-family: 'Lustria', serif;
+    }
+
+    .navbar-link {
+        color: $navbarLinkColor;
+        &:hover {
+          color: $navbarLinkColorHover;
+        }
     }
 }
 
