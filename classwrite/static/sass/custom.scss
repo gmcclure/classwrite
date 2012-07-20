@@ -2,8 +2,8 @@
 
 $navbarBackground: #02a0d0;
 $navbarBackgroundHighlight: #02a9dd;
-$navbarLinkColor: #ff6766;
-$navbarLinkColorHover: #f06060;
+$navbarLinkColor: #ffc740;
+$navbarLinkColorHover: #ffdf5f;
 
 body {
     font-family: 'Cantarell', sans-serif;
@@ -19,12 +19,12 @@ body {
         color: white;
         font-family: 'Lustria', serif;
     }
+}
 
-    .navbar-link {
+.navbar-text {
+    a {
         color: $navbarLinkColor;
-        &:hover {
-          color: $navbarLinkColorHover;
-        }
+        &:hover { color: $navbarLinkColorHover }
     }
 }
 

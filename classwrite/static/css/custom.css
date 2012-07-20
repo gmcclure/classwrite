@@ -5470,13 +5470,14 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
   color: white;
   font-family: 'Lustria', serif;
 }
-/* line 23, ../sass/custom.scss */
-.navbar .navbar-link {
-  color: #ff6766;
-}
+
 /* line 25, ../sass/custom.scss */
-.navbar .navbar-link:hover {
-  color: #f06060;
+.navbar-text a {
+  color: #ffc740;
+}
+/* line 27, ../sass/custom.scss */
+.navbar-text a:hover {
+  color: #ffdf5f;
 }
 
 /* line 31, ../sass/custom.scss */
