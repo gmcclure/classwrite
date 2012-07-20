@@ -5473,11 +5473,11 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
 
 /* line 25, ../sass/custom.scss */
 .navbar-text a {
-  color: #ffc740;
+  color: #ffd673;
 }
 /* line 27, ../sass/custom.scss */
 .navbar-text a:hover {
-  color: #ffdf5f;
+  color: #ffdf7f;
 }
 
 /* line 31, ../sass/custom.scss */
