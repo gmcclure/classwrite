@@ -1,0 +1,5 @@
+{% extends "syllabustemplate_form_template.html" %}
+
+{% block form_title %}Edit Syllabus{% endblock %}
+{% block form_action %}{% url syllabus_edit form.instance.id %}{% endblock %}
+{% block submit_button_text %}Update This Syllabus{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load markup %}
+
+{% block content %}
+<h1>Assignment Preview</h1>
+<div id="context_navigation">
+    <a href="/library/catalog/">Library</a>
+</div>
+
+<h2>Name</h2>
+<div class="assignment_detail">{{ assignment.name }}</div>
+
+<h2>Objectives</h2>
+<div class="assignment_detail">{{ assignment.objectives|markdown:"safe,extra" }}</div>
+
+<h2>Prompt</h2>
+<div class="assignment_detail">{{ assignment.prompt|markdown:"safe,extra" }}</div>
+
+<h2>Rubric</h2>
+<div class="assignment_detail">{{ assignment.rubric|markdown:"safe,extra" }}</div>
+
+{% endblock %}

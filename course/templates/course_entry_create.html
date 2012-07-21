@@ -1,0 +1,8 @@
+{% extends "course_entry_form_template.html" %}
+
+{% block form_title %}Create New Course Calendar Entry{% endblock %}
+{% block form_action %}/course/{{ course_id }}/calendar/create_course_entry/{% endblock %}
+{% block date_hint %}For when should your entry be dated?{% endblock %}
+{% block title_hint %}Title your calendar entry.{% endblock %}
+{% block text_hint %}What's the plan?{% endblock %}
+{% block submit_button_text %}Create Calendar Entry{% endblock %}

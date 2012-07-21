@@ -127,6 +127,11 @@ INSTALLED_APPS = (
     'django.contrib.markup',
     'social_auth',
     'front',
+    'account',
+    'course',
+    'assignment',
+    'cal',
+    'library',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -179,4 +184,4 @@ SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
 SOCIAL_AUTH_DEFAULT_USERNAME   = 'new_writer'
 SOCIAL_AUTH_EXPIRATION         = 'expires'
 
-AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+AUTH_PROFILE_MODULE = 'account.UserProfile'

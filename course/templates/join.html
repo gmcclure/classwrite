@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block javascript_additional %}
+<script type="text/javascript" src="/_/js/jquery.tools.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+            $('input, textarea').focus(function(){
+                $(this).parent().addClass('highlight');
+            });
+
+            $('input, textarea').blur(function(){
+                $(this).parent().removeClass('highlight');
+            });
+
+            $("#class_membership :input").tooltip({
+                position: "center right",
+                offset: [-2, 10],
+                effect: "fade",
+                opacity: 0.7
+            });
+    });
+</script>
+{% endblock %}
+
+{% block nav %}
+<h1>Class Management</h1>
+{% endblock %}
+
+{% block content %}
+    <form id="class_membership" action="/class/join/" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <fieldset class="form_title">
+            <legend>Join a Class</legend>
+        </fieldset>
+
+        <div class="form_section_wrapper">
+        <fieldset>
+            <legend>1. Enter Class Information</legend>
+            <div class="fieldset_desc">
+                Enter the class ID and password supplied to you by your instructor
+                or TA. After you submit this info, you'll be in!
+            </div>
+
+            <div class="field_wrapper">
+                <label for="id_class_id">Class ID <span class="req">*</span></label>
+                {{ form.class_id }}
+                <div class="tooltip">
+                    Input the class ID here.
+                </div>
+                {{ form.class_id.errors }}
+            </div>
+
+            <div class="field_wrapper">
+                <label for="id_class_password">Password <span class="req">*</span></label>
+                {{ form.class_password }}
+                <div class="tooltip">
+                    Class password here.
+                </div>
+                {{ form.class_password.errors }}
+            </div>
+        </fieldset>
+        </div>
+
+        <button type="submit">Join This Class!</button>
+    </form>
+{% endblock %}

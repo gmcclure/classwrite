@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Course Calendar</h1>
+<div id="context_navigation">
+    <a href="/home/">Home</a> &#x7c;
+    <a href="/library/catalog/">Library</a> &#x7c;
+    <a href="/course/{{ course_id }}/calendar/create_course_entry/">Create New Calendar Entry</a>
+</div>
+
+<div class="calendar">
+{{ calendar }}
+</div>
+
+{% endblock %}

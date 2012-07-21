@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block javascript_additional %}
+<script type="text/javascript" src="/_/js/csrf.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('a.delete-action').click(function(evt){
+            evt.preventDefault();
+            var action=$(this).attr('href');
+            $.ajax({
+                url: action,
+                success: function(html){
+                    $('#confirmation').html(html).dialog({
+                        buttons: {
+                            'Delete' : function(){ 
+                                $.post(action); 
+                                $(this).dialog('close');
+                                location.reload();
+                            },
+                            Cancel   : function(){ $(this).dialog('close'); }
+                        },
+                        height: 200, 
+                        modal: true,
+                        resizable: false,
+                    });
+                },
+            });
+        });
+
+        $('a.attach-action').click(function(evt){
+            evt.preventDefault();
+            var item=$(this).attr('data-item');
+            $('#attach-action').html(html).dialog({
+                height: 400,
+                modal: true,
+                resizable: false,
+                title: 'Attach ' + item + ' to Class',
+                width: 400,
+            });
+        });
+    });
+</script>
+{% endblock %}
+
+{% block nav %}
+<h1>Your Library</h1>
+<div id="context_navigation">
+    <a href="/front/">Home</a> &#x7c;
+    <a href="/assignment/create/">Create a New Assignment</a> &#x7c;
+    <a href="/syllabus/create/">Create a New Syllabus</a>
+</div>
+{% endblock %}
+
+{% block content %}
+    {% if messages %}
+    <div class="dashboard_section">
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ messages.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <div class="dashboard_section">
+        <h2>Assignments</h2>
+        {% if assignments %}
+        <ul class="assignment_list">
+            {% for assignment in assignments %}
+            <li>{{ assignment.name }}<br/><a class="attach-action" data-item="Assignment" href="#">Attach</a> &#x7c; <a href="/assignment/{{ assignment.id }}/preview/">Preview</a> &#x7c; <a href="/assignment/{{ assignment.id }}/edit/">Edit</a> &#x7c; <a class="delete-action" href="/assignment/{{ assignment.id }}/delete/">Delete</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <ul class="messages">
+            <li class="info">You haven't created any assignments yet.</li>
+        </ul>
+        {% endif %}
+    </div>
+
+    <div class="dashboard_section">
+        <h2>Syllabi</h2>
+        {% if syllabi %}
+        <ul class="assignment_list">
+            {% for syllabus in syllabi %}
+            <li>{{ syllabus.title }}<br/><a class="attach-action" data-item="Syllabus" href="#">Attach</a> &#x7c; <a href="/syllabus/{{ syllabus.id }}/preview/">Preview</a> &#x7c; <a href="/syllabus/{{ syllabus.id }}/edit/">Edit</a> &#x7c; <a class="delete-action" href="/syllabus/{{ syllabus.id }}/delete/">Delete</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <ul class="messages">
+            <li class="info">You haven't created a syllabus yet.</li>
+        </ul>
+        {% endif %}
+    </div>
+
+    <div id="attach-action" class="modal-dialog"></div>
+    <div id="confirmation" class="modal-dialog" title="Confirm Deletion"></div>
+{% endblock %}

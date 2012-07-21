@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}The Writing Studio{% endblock %}
+
+{% block css_additional %}
+<link rel="stylesheet" type="text/css" href="/_/css/smoothness/jquery-ui-1.8.11.custom.css" />
+{% endblock %}
+
+{% block javascript_additional %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#class_management_console').tabs()
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+<h1>Manage Course</h1>
+<div id="context_navigation">
+    <a href="/assignment/create/">Create New Assignment</a> &#x7c; 
+    <a href="/course/add_assignment/">Add Assignment to Course</a>
+</div>
+
+<div id="class_management_console">
+    <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#syllabus">Syllabus</a></li>
+        <li><a href="#assignments">Assignments</a></li>
+        <li><a href="#roster">Roster</a></li>
+        <li><a href="#details">Course Details</a></li>
+    </ul>
+
+    <div id="overview">
+        {% if class_events %}
+        <ul>
+        {% for evt in class_events %}
+        <li>{{ evt.message }}</li>
+        {% endfor %}
+        </ul>
+        {% else %}
+        <p>This class has no events.</p>
+        {% endif %}
+    </div>
+
+    <div id="syllabus">
+        {% if syllabus %}
+        {{ syllabus.content }}
+        {% else %}
+        <p>No syllabus has been assigned to this class yet.</p>
+        {% endif %}
+    </div>
+
+    <div id="assignments">
+        {% if assignments %}
+        <ul>
+        {% for assignment in assignments %}
+        <li>{{ assignment.name }}</li>
+        {% endfor %}
+        </ul>
+        {% else %}
+        <p>This class has no assignments.</p>
+        {% endif %}
+    </div>
+
+    <div id="roster">
+        {% include "_roster.html" %}
+    </div>
+
+    <div id="details">
+        <ul>
+            <li>Class ID: {{ course_id }}</li>
+            <li>Class Password: {{ course.password }}</li>
+            <li>Class Code: {{ course.code }}</li>
+        </ul>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -4,8 +4,8 @@
 <h2>Home</h2>
 <ul class="nav nav-pills">
     <li><a href="/library/catalog/">Library</a></li>
-    <li><a href="/class/join/">Join a Class</a></li>    
-    <li><a href="/class/create/">Create a New Class</a></li>
+    <li><a href="/course/join/">Join a Class</a></li>    
+    <li><a href="/course/create/">Create a New Class</a></li>
 </ul>
 
 {% if messages %}
@@ -22,9 +22,9 @@
 <div class="dashboard_section">
     <h2>Instructor Classes</h2>
     <ul class="class_list">
-    {% for class in instructor_classes %}
-    <li><a href="/class/{{ class.id }}/overview/">{{ class.code }}</a> <span class="sep">::</span> 
-        <a href="/class/{{ class.id }}/overview/">Overview</a> <span class="sep">&#x7c;</span> <a href="/class/{{ class.id }}/overview/#assignments">Assignments</a> <span class="sep">&#x7c;</span> <a href="/class/{{ class.id }}/calendar/">Calendar</a> <span class="sep">&#x7c;</span> <a href="/class/{{ class.id }}/overview/#syllabus">Syllabus</li>
+    {% for course in instructor_classes %}
+    <li><a href="/course/{{ course.id }}/overview/">{{ course.code }}</a> <span class="sep">::</span> 
+      <a href="/course/{{ course.id }}/overview/">Overview</a> <span class="sep">&#x7c;</span> <a href="/course/{{ course.id }}/overview/#assignments">Assignments</a> <span class="sep">&#x7c;</span> <a href="/course/{{ course.id }}/calendar/">Calendar</a> <span class="sep">&#x7c;</span> <a href="/course/{{ course.id }}/overview/#syllabus">Syllabus</a></li>
     {% endfor %}
     </ul>
 </div>
@@ -32,10 +32,10 @@
 
 <div class="dashboard_section">
     <h2>Student Classes</h2>
-    {% if student_classes %}
+    {% if student_courses %}
     <ul class="class_list">
-    {% for class in student_classes %}
-    <li>{{ class.code }} :: Home &#x7c; Assignments &#x7c; Calendar &#x7c; Syllabus</li>
+    {% for course in student_courses %}
+    <li>{{ course.code }} :: Home &#x7c; Assignments &#x7c; Calendar &#x7c; Syllabus</li>
     {% endfor %}
     </ul>
     {% else %}

@@ -1,0 +1,16 @@
+{% block roster %}
+    {% if students %}
+    <table class="roster">
+        <tr>
+            <th>Name</th><th>Email</th>
+        </tr>
+        <tr>
+            {% for student in students %}
+            <td>{{ student.profile.user.first_name|default:"Anonymous" }} {{ student.profile.user.last_name|default:"Student" }}</td>
+            <td>{{ student.profile.user.email }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+    {% else %}
+    {% endif %}
+{% endblock %}

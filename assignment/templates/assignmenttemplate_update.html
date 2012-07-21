@@ -1,0 +1,6 @@
+{% extends "assignmenttemplate_form_template.html" %}
+
+{% block nav %}<h1>Edit Assignment</h1>{% endblock %}
+{% block form_title %}Edit Assignment{% endblock %}
+{% block form_action %}{% url assignment_edit form.instance.id %}{% endblock %}
+{% block submit_button_text %}Update This Assignment{% endblock %}

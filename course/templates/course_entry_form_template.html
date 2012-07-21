@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block css_additional %}
+<link rel="stylesheet" type="text/css" href="/_/js/markitup/skins/markitup/style.css" />
+<link rel="stylesheet" type="text/css" href="/_/js/markitup/sets/markdown/style.css" />
+{% endblock %}
+
+{% block javascript_additional %}
+<script type="text/javascript" src="/_/js/markitup/jquery.markitup.js"></script>
+<script type="text/javascript" src="/_/js/markitup/sets/markdown/set.js"></script>
+<script type="text/javascript" src="/_/js/jquery.simplyCountable.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('textarea').markItUp(mySettings)
+
+        $('input').focus(function(){
+            $(this).parent().addClass('highlight');
+        });
+
+        $('input').blur(function(){
+            $(this).parent().removeClass('highlight');
+        });
+
+        /*$("#assignment_template_edit :input").tooltip({
+            position: "center right",
+            offset: [-2, 10],
+            effect: "fade",
+            opacity: 0.7
+        });*/
+
+        $('textarea#id_text').simplyCountable({ counter: '#chrm1', maxCount: 50000, overClass: 'go_red', safeClass: 'go_green' });
+    });
+</script>
+{% endblock %}
+
+{% block nav %}
+<h1>Course Calendar</h1>
+<div id="context_navigation">
+    <a href="/class/{{ course_id }}/calendar/">Course Calendar</a> &#x7c;
+    <a href="/library/catalog">Catalog</a> &#x7c;
+    <a href="/dashboard/">Dashboard</a>
+</div>
+{% endblock %}
+
+{% block content %}
+
+    <form id="assignment_template_edit" action="{% block form_action %}{% endblock %}" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <fieldset class="form_title">
+            <legend>{% block form_title %}{% endblock %}</legend>
+        </fieldset>
+
+        <div class="form_section_wrapper">
+        <fieldset>
+            <legend>1. Details</legend>
+            <div class="fieldset_desc">
+                {% block date_hint %}{% endblock %}
+            </div>
+
+            <div class="field_wrapper">
+                <label for="id_title">Date <span class="req">*</span></label>
+                {{ form.dated }}
+                <div class="tooltip">
+                    When should this entry be dated?
+                </div>
+                {{ form.dated.errors }}
+            </div>
+
+            <div class="fieldset_desc">
+                {% block title_hint %}{% endblock %}
+            </div>
+
+            <div class="field_wrapper">
+                <label for="id_title">Title <span class="req">*</span></label>
+                {{ form.title }}
+                <div class="tooltip">
+                    What is the title of this entry?
+                </div>
+                {{ form.title.errors }}
+            </div>
+        </fieldset>
+        </div>
+
+        <div class="form_section_wrapper">
+        <fieldset>
+            <legend>2. Body Text</legend>
+            <div class="fieldset_desc">
+                {% block text_hint %}{% endblock %}
+            </div>
+
+            <div class="field_wrapper">
+                <label for="id_text">Text :: <span id="chrm1" class="chars_remaining"></span> characters remaining</label>
+                {{ form.text }}
+                <div class="tooltip">
+                    What's going on?!
+                </div>
+                {{ form.text.errors }}
+            </div>
+        </fieldset>
+        </div>
+
+        <button type="submit">{% block submit_button_text %}{% endblock %}</button>
+    </form>
+
+{% endblock %}
