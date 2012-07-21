@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 {% load markup %}
 
-{% block nav %}
-<h1>Course Entry View</h1>
-<div id="context_navigation">
-    <a href="/library/catalog/">Library</a>
-</div>
-{% endblock %}
-
 {% block content %}
+<h1>Course Entry</h1>
+<div class="subnav">
+    <ul class="nav nav-pills">
+        <li><a href="/library/catalog/">Library</a></li>
+    </ul>
+</div>
 
 <h2>Name</h2>
 <div class="assignment_detail">{{ entry.title }}</div>

@@ -83,7 +83,7 @@ def course_calendar(request, course_id, thisyear=date.today().year, thismonth=da
 
 
 @login_required
-def course_calendar_entry_view(request, class_id, entry_id):
+def course_calendar_entry_view(request, course_id, entry_id):
     '''View a course calendar entry.'''
     entry = CourseEntry.objects.get(pk=entry_id)
     return render_to_response('course_calendar_entry_view.html',
