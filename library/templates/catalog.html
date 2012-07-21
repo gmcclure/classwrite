@@ -42,16 +42,16 @@
 </script>
 {% endblock %}
 
-{% block nav %}
-<h1>Your Library</h1>
-<div id="context_navigation">
-    <a href="/front/">Home</a> &#x7c;
-    <a href="/assignment/create/">Create a New Assignment</a> &#x7c;
-    <a href="/syllabus/create/">Create a New Syllabus</a>
-</div>
-{% endblock %}
-
 {% block content %}
+    <h1>Library</h1>
+    <div class="subnav">
+      <ul class="nav nav-pills">
+        <li><a href="/home/">Home</a></li>
+        <li><a href="/assignment/create/">Create a New Assignment</a></li>
+        <li><a href="/syllabus/create/">Create a New Syllabus</a></li>
+      </ul>
+    </div>
+
     {% if messages %}
     <div class="dashboard_section">
         <ul class="messages">
@@ -62,7 +62,7 @@
     </div>
     {% endif %}
 
-    <div class="dashboard_section">
+    <div class="well">
         <h2>Assignments</h2>
         {% if assignments %}
         <ul class="assignment_list">
@@ -77,7 +77,7 @@
         {% endif %}
     </div>
 
-    <div class="dashboard_section">
+    <div class="well">
         <h2>Syllabi</h2>
         {% if syllabi %}
         <ul class="assignment_list">

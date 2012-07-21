@@ -2,10 +2,12 @@
 
 {% block content %}
 <h1>Course Calendar</h1>
-<div id="context_navigation">
-    <a href="/home/">Home</a> &#x7c;
-    <a href="/library/catalog/">Library</a> &#x7c;
-    <a href="/course/{{ course_id }}/calendar/create_course_entry/">Create New Calendar Entry</a>
+<div class="subnav">
+  <ul class="nav nav-pills">
+    <li><a href="/home/">Home</a></li>
+    <li><a href="/library/catalog/">Library</a></li>
+    <li><a href="/course/{{ course_id }}/calendar/create_course_entry/">Create New Calendar Entry</a></li>
+  <ul>
 </div>
 
 <div class="calendar">

@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Home</h2>
-<ul class="nav nav-pills">
-    <li><a href="/library/catalog/">Library</a></li>
-    <li><a href="/course/join/">Join a Class</a></li>    
-    <li><a href="/course/create/">Create a New Class</a></li>
-</ul>
+<h1>Home</h1>
+<div class="subnav">
+  <ul class="nav nav-pills">
+      <li><a href="/library/catalog/">Library</a></li>
+      <li><a href="/course/join/">Join a Class</a></li>    
+      <li><a href="/course/create/">Create a New Class</a></li>
+  </ul>
+</div>
 
 {% if messages %}
 <div class="dashboard_section">
@@ -19,7 +21,7 @@
 {% endif %}
 
 {% if instructor_classes %}
-<div class="dashboard_section">
+<div class="well">
     <h2>Instructor Classes</h2>
     <ul class="class_list">
     {% for course in instructor_classes %}
@@ -30,7 +32,7 @@
 </div>
 {% endif %}
 
-<div class="dashboard_section">
+<div class="well">
     <h2>Student Classes</h2>
     {% if student_courses %}
     <ul class="class_list">

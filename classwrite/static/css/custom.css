@@ -5492,3 +5492,53 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#02a5d8', endColorstr='#029ccb', GradientType=0);
 }
+
+/* line 36, ../sass/custom.scss */
+.calendar table {
+  border-collapse: collapse;
+  margin: 20px auto 0px auto;
+  padding: 20px;
+  width: 840px;
+}
+/* line 37, ../sass/custom.scss */
+.calendar td {
+  background: #669ec8;
+  border: 1px solid white;
+  color: black;
+  height: 120px;
+  max-width: 120px;
+  padding: 10px;
+  width: 120px;
+}
+/* line 38, ../sass/custom.scss */
+.calendar th, .calendar .calendar .td {
+  font-size: 16px;
+  font-weight: normal;
+}
+/* line 39, ../sass/custom.scss */
+.calendar th.month {
+  font-size: 20px;
+  padding-bottom: 20px;
+}
+/* line 40, ../sass/custom.scss */
+.calendar td.noday {
+  background: #aa8b30;
+}
+/* line 41, ../sass/custom.scss */
+.calendar td.filled {
+  background: #428ec8;
+  color: white;
+}
+/* line 42, ../sass/custom.scss */
+.calendar td.today {
+  background: #f1d172;
+}
+/* line 43, ../sass/custom.scss */
+.calendar td.today a {
+  color: black;
+}
+/* line 44, ../sass/custom.scss */
+.calendar a.month_link {
+  font-size: 20px;
+  margin: 0px 60px 0px 60px;
+}
