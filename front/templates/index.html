@@ -26,7 +26,7 @@
     <ul class="class_list">
     {% for course in instructor_classes %}
     <li><a href="/course/{{ course.id }}/overview/">{{ course.code }}</a> <span class="sep">::</span> 
-      <a href="/course/{{ course.id }}/overview/">Overview</a> <span class="sep">&#x7c;</span> <a href="/course/{{ course.id }}/overview/#assignments">Assignments</a> <span class="sep">&#x7c;</span> <a href="/course/{{ course.id }}/calendar/">Calendar</a> <span class="sep">&#x7c;</span> <a href="/course/{{ course.id }}/overview/#syllabus">Syllabus</a></li>
+        <a href="/course/{{ course.id }}/overview/">Overview</a> <span class="sep">&#x7c;</span> <a href="/course/{{ course.id }}/overview/#syllabus">Syllabus</a> <span class="sep">&#x7c;</span> <a href="/course/{{ course.id }}/overview/#assignments">Assignments</a> <span class="sep">&#x7c;</span> <a href="/course/{{ course.id }}/calendar/">Calendar</a></li>
     {% endfor %}
     </ul>
 </div>
