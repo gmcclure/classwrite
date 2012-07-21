@@ -5508,36 +5508,42 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
   height: 120px;
   max-width: 120px;
   padding: 10px;
+  vertical-align: top;
   width: 120px;
 }
-/* line 44, ../sass/custom.sass */
-.calendar th, .calendar .calendar .td {
+/* line 45, ../sass/custom.sass */
+.calendar th,
+.calendar .calendar .td {
   font-size: 16px;
   font-weight: normal;
 }
-/* line 47, ../sass/custom.sass */
+/* line 50, ../sass/custom.sass */
 .calendar th.month {
   font-size: 20px;
   padding-bottom: 20px;
 }
-/* line 50, ../sass/custom.sass */
+/* line 53, ../sass/custom.sass */
 .calendar td.noday {
-  background: #aa8b30;
+  background: #bf9430;
 }
-/* line 52, ../sass/custom.sass */
+/* line 55, ../sass/custom.sass */
 .calendar td.filled {
   background: #428ec8;
   color: white;
 }
-/* line 55, ../sass/custom.sass */
-.calendar td.today {
-  background: #f1d172;
+/* line 58, ../sass/custom.sass */
+.calendar td.filled ul a {
+  color: white;
 }
-/* line 57, ../sass/custom.sass */
+/* line 60, ../sass/custom.sass */
+.calendar td.today {
+  background: #ffc640;
+}
+/* line 62, ../sass/custom.sass */
 .calendar td.today a {
   color: black;
 }
-/* line 59, ../sass/custom.sass */
+/* line 64, ../sass/custom.sass */
 .calendar a.month_link {
   font-size: 20px;
   margin: 0px 60px 0px 60px;
