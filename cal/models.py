@@ -22,7 +22,7 @@ class CourseCalendar(HTMLCalendar):
                     body.append('<li>')
                     body.append('<a href="%s">' % entry.get_absolute_url())
                     body.append(esc(entry.title))
-                    body.append('</a><li>')
+                    body.append('</a></li>')
                 body.append('</ul>')
                 return self.day_cell(cssclass, '%d %s' % (day, ''.join(body)))
             return self.day_cell(cssclass, day)
