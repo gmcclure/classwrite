@@ -1,9 +1,27 @@
 {% extends "base.html" %}
 
+{% block javascript_additional %}
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Enables link to tab
+        var url = document.location.toString();
+        if (url.match('#')) {
+            $('.nav-tabs a[href=#'+url.split('#')[1]+']').tab('show') ;
+        }
+
+        // Change hash for page-reload
+        $('.nav-tabs a').on('shown', function (e) {
+            window.location.hash = e.target.hash;
+        })
+    });
+</script>
+{% endblock %}
+
 {% block content %}
 <h1>Manage Course</h1>
 <div class="subnav">
     <ul class="nav nav-pills">
+        <li><a href="/home/">Home</a></li>
         <li><a href="/assignment/create/">Create New Assignment</a></li> 
         <li><a href="/course/add_assignment/">Add Assignment to Course</a></li>
     </ul>
