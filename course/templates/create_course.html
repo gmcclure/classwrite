@@ -1,163 +1,151 @@
 {% extends "base.html" %}
 
+{% block css_additional %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/markitup/skins/markitup/style.css" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/markitup/sets/markdown/style.css" />
+{% endblock %}
+
 {% block javascript_additional %}
-<script type="text/javascript" src="/_/js/jquery.tools.min.js"></script>
-<script type="text/javascript" src="/_/js/jquery.NobleCount.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/markitup/jquery.markitup.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/markitup/sets/markdown/set.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.simplyCountable.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-            $('input, textarea').focus(function(){
-                $(this).parent().addClass('highlight');
-            });
+        $('textarea').markItUp(mySettings)
 
-            $('input, textarea').blur(function(){
-                $(this).parent().removeClass('highlight');
-            });
+        $('input, textarea').focus(function(){
+            $(this).parent().addClass('highlight');
+        });
 
-            $("#class_creation :input").tooltip({
-                position: "center right",
-                offset: [-2, 10],
-                effect: "fade",
-                opacity: 0.7
-            });
+        $('input, textarea').blur(function(){
+            $(this).parent().removeClass('highlight');
+        });
 
-            $('textarea').NobleCount('.chars_remaining', {
-                on_negative: 'go_red',
-                on_positive: 'go_green',
-                max_chars: 3000 
-            });
+        $("#class_creation :input").tooltip({
+            position: "center right",
+            offset: [-2, 10],
+            effect: "fade",
+            opacity: 0.7
+        });
+
+        $('textarea').NobleCount('.chars_remaining', {
+            on_negative: 'go_red',
+            on_positive: 'go_green',
+            max_chars: 3000 
+        });
     });
 </script>
 {% endblock %}
 
-{% block nav %}
-<h1>Course Management</h1>
-{% endblock %}
-
 {% block content %}
+<h1>Create a New Class</h1>
 
-    <form id="class_creation" action="/course/create/" method="post">
-        {% csrf_token %}
-        {{ form.non_field_errors }}
+<form id="class_creation" action="/course/create/" method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
 
-        <fieldset class="form_title">
-            <legend>Create a New Class</legend>
-        </fieldset>
-
-        <div class="form_section_wrapper">
-        <fieldset>
-            <legend>1. Password</legend>
-            <div class="fieldset_desc">
-                Choose a password for your class. Your students
-                will use this password along with the class ID
-                (automatically assigned after you submit this form)
-                to join the class.
-            </div>
-
-            <div class="field_wrapper">
-                <label for="id_password">Password <span class="req">*</span></label>
-                {{ form.password }}
-                <div class="tooltip">
-                    Passwords should be at least 4 characters long, but no more than 12
-                    characters. You may include letters, numbers, and punctuation.
-                </div>
-                {{ form.password.errors }}
-            </div>
-        </fieldset>
+    <div class="form_section_wrapper">
+    <fieldset>
+        <legend>1. Password</legend>
+        <div class="fieldset_desc">
+            Choose a password for your class. Your students
+            will use this password along with the class ID
+            (automatically assigned after you submit this form)
+            to join the class.
         </div>
 
-        <div class="form_section_wrapper">
-        <fieldset>
-            <legend>2. Class Details</legend>
-            <div class="fieldset_desc">
-                To identify your class, fill in the following required details.
+        <div class="field_wrapper">
+            <label for="id_password">Password <span class="req">*</span></label>
+            {{ form.password }}
+            <div class="tooltip">
+                Passwords should be at least 4 characters long, but no more than 12
+                characters. You may include letters, numbers, and punctuation.
             </div>
+            {{ form.password.errors }}
+        </div>
+    </fieldset>
+    </div>
 
-            <div class="field_wrapper">
-                <label for="id_code">Code <span class="req">*</span></label>
-                {{ form.code }}
-                <div class="tooltip">
-                    Input the class code here, 30 characters max.
-                    This can be an administrative code, but if you
-                    don't have one yet, you can use a placeholder,
-                    e.g., 'CLASS 1', or whatever makes sense. You
-                    can change this later.
-                </div>
-                {{ form.code.errors }}
-            </div>
-
-            <div class="field_wrapper">
-                <label for="id_dept">Department <span class="req">*</span></label>
-                {{ form.dept }}
-                <div class="tooltip">
-                    Class department, 100 characters or less. Again,
-                    this is used to identify the class, so enter
-                    whatever makes sense.
-                </div>
-                {{ form.dept.errors }}
-            </div>
-
-            <div class="field_wrapper">
-                <label for="id_designation">Designation / Title <span class="req">*</span></label>
-                {{ form.designation }}
-                <div class="tooltip">
-                    The class's title slug: "Writing &amp; Rhetoric", 
-                    "Poetry", etc. Up to 50 characters.
-                </div>
-                {{ form.designation.errors }}
-            </div>
-        </fieldset>
+    <div class="form_section_wrapper">
+    <fieldset>
+        <legend>2. Class Details</legend>
+        <div class="fieldset_desc">
+            To identify your class, fill in the following required details.
         </div>
 
-        <div class="form_section_wrapper">
-        <fieldset>
-            <legend>3. Additional Information</legend>
-            <div class="fieldset_desc">
-                Additional class details. This information is optional and you can
-                add it later, if you like.
+        <div class="field_wrapper">
+            <label for="id_code">Code <span class="req">*</span></label>
+            {{ form.code }}
+            <div class="tooltip">
+                Input the class code here, 30 characters max.
+                This can be an administrative code, but if you
+                don't have one yet, you can use a placeholder,
+                e.g., 'CLASS 1', or whatever makes sense. You
+                can change this later.
             </div>
-
-            <div class="field_wrapper">
-                <label for="id_description">Description :: <span class="chars_remaining"></span> characters remaining</label>
-                {{ form.description }}
-                <div class="tooltip">
-                    Provide a class description here. You have 3000 characters, maximum,
-                    but this isn't your class syllabus, just a place to put a brief account
-                    of the class's subject matter and goals &mdash; you'll have a chance
-                    to create your syllabus later.
-                </div>
-                {{ form.description.errors }}
-            </div>
-
-            <div class="field_wrapper">
-                <label for="id_section">Section</label>
-                {{ form.section }}
-                <div class="tooltip">
-                    Do you have a section code? Up to 20 characters allowed.
-                </div>
-                {{ form.section.errors }}
-            </div>
-
-            <div class="field_wrapper">
-                <label for="id_room_no">Room No</label>
-                {{ form.room_no }}
-                <div class="tooltip">
-                    Are y'all gonna meet up somewhere? Up to 20 characters allowed.
-                </div>
-                {{ form.room_no.errors }}
-            </div>
-
-            <div class="field_wrapper">
-                <label for="id_website">Associated Web Site Address</label>
-                {{ form.website }}
-                <div class="tooltip">
-                    Enter an address for any other Web site associated with this class.
-                </div>
-                {{ form.website.errors }}
-            </div>
-        </fieldset>
+            {{ form.code.errors }}
         </div>
 
-        <button type="submit">Create Class</button>
-    </form>
+        <div class="field_wrapper">
+            <label for="id_dept">Department <span class="req">*</span></label>
+            {{ form.dept }}
+            <div class="tooltip">
+                Class department, 100 characters or less. Again,
+                this is used to identify the class, so enter
+                whatever makes sense.
+            </div>
+            {{ form.dept.errors }}
+        </div>
 
+        <div class="field_wrapper">
+            <label for="id_designation">Designation / Title <span class="req">*</span></label>
+            {{ form.designation }}
+            <div class="tooltip">
+                The class's title slug: "Writing &amp; Rhetoric", 
+                "Poetry", etc. Up to 50 characters.
+            </div>
+            {{ form.designation.errors }}
+        </div>
+    </fieldset>
+    </div>
+
+    <div class="form_section_wrapper">
+    <fieldset>
+        <legend>3. Additional Information</legend>
+        <div class="fieldset_desc">
+            Additional class details. This information is optional and you can
+            add it later, if you like.
+        </div>
+
+        <div class="field_wrapper">
+            <label for="id_section">Section</label>
+            {{ form.section }}
+            <div class="tooltip">
+                Do you have a section code? Up to 20 characters allowed.
+            </div>
+            {{ form.section.errors }}
+        </div>
+
+        <div class="field_wrapper">
+            <label for="id_room_no">Room No</label>
+            {{ form.room_no }}
+            <div class="tooltip">
+                Are y'all gonna meet up somewhere? Up to 20 characters allowed.
+            </div>
+            {{ form.room_no.errors }}
+        </div>
+
+        <div class="field_wrapper">
+            <label for="id_website">Associated Web Site Address</label>
+            {{ form.website }}
+            <div class="tooltip">
+                Enter an address for any other Web site associated with this class.
+            </div>
+            {{ form.website.errors }}
+        </div>
+    </fieldset>
+    </div>
+
+    <button type="submit">Create Class</button>
+</form>
 {% endblock %}

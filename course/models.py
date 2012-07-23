@@ -8,7 +8,6 @@ class Course(models.Model):
     code = models.CharField(max_length=30)
     dept = models.CharField(max_length=100)
     designation = models.CharField(max_length=50)
-    description = models.CharField(max_length=3000, null=True, blank=True)
     section = models.CharField(max_length=20, null=True, blank=True)
     room_no = models.CharField(max_length=20, null=True, blank=True)
     website = models.URLField(verify_exists=False, null=True, blank=True)
