@@ -1,40 +1,11 @@
 {% extends "base.html" %}
 
-{% block css_additional %}
-<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/markitup/skins/markitup/style.css" />
-<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/markitup/sets/markdown/style.css" />
-{% endblock %}
-
 {% block javascript_additional %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/markitup/jquery.markitup.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/markitup/sets/markdown/set.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.simplyCountable.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('textarea').markItUp(mySettings)
-
-        $('input, textarea').focus(function(){
-            $(this).parent().addClass('highlight');
-        });
-
-        $('input, textarea').blur(function(){
-            $(this).parent().removeClass('highlight');
-        });
-
-        $("#class_creation :input").tooltip({
-            position: "center right",
-            offset: [-2, 10],
-            effect: "fade",
-            opacity: 0.7
-        });
-
-        $('textarea').NobleCount('.chars_remaining', {
-            on_negative: 'go_red',
-            on_positive: 'go_green',
-            max_chars: 3000 
-        });
-    });
-</script>
+    <script>
+        $(document).ready(function(){
+            $('input').popover({ 'trigger': 'focus'});
+        })
+    </script>
 {% endblock %}
 
 {% block content %}
@@ -56,11 +27,7 @@
 
         <div class="field_wrapper">
             <label for="id_password">Password <span class="req">*</span></label>
-            {{ form.password }}
-            <div class="tooltip">
-                Passwords should be at least 4 characters long, but no more than 12
-                characters. You may include letters, numbers, and punctuation.
-            </div>
+            <input id="id_password" type="text" name="password" maxlength="12" data-title="Class Password" data-content="Passwords should be at least 4 characters long, but no more than 12 characters. You may include letters, numbers, and punctuation.">
             {{ form.password.errors }}
         </div>
     </fieldset>
@@ -75,35 +42,19 @@
 
         <div class="field_wrapper">
             <label for="id_code">Code <span class="req">*</span></label>
-            {{ form.code }}
-            <div class="tooltip">
-                Input the class code here, 30 characters max.
-                This can be an administrative code, but if you
-                don't have one yet, you can use a placeholder,
-                e.g., 'CLASS 1', or whatever makes sense. You
-                can change this later.
-            </div>
+            <input id="id_code" type="text" name="code" maxlength="12" data-title="Class Code" data-content="Input the class code here, 30 characters max.  This can be an administrative code, but if you don't have one yet, you can use a placeholder, e.g., 'CLASS 1', or whatever makes sense. You can change this later.">
             {{ form.code.errors }}
         </div>
 
         <div class="field_wrapper">
             <label for="id_dept">Department <span class="req">*</span></label>
-            {{ form.dept }}
-            <div class="tooltip">
-                Class department, 100 characters or less. Again,
-                this is used to identify the class, so enter
-                whatever makes sense.
-            </div>
+            <input id="id_dept" type="text" name="dept" maxlength="12" data-title="Class Department" data-content="Class department, 100 characters or less. Again, this is used to identify the class, so enter whatever makes sense.">
             {{ form.dept.errors }}
         </div>
 
         <div class="field_wrapper">
             <label for="id_designation">Designation / Title <span class="req">*</span></label>
-            {{ form.designation }}
-            <div class="tooltip">
-                The class's title slug: "Writing &amp; Rhetoric", 
-                "Poetry", etc. Up to 50 characters.
-            </div>
+            <input id="id_designation" type="text" name="designation" maxlength="12" data-title="Class Designation" data-content="The class&rsquo;s title slug: &ldquo;Writing &amp; Rhetoric&rdquo;, &ldquo;Poetry&rdquo;, etc. Up to 50 characters.">
             {{ form.designation.errors }}
         </div>
     </fieldset>
@@ -119,28 +70,19 @@
 
         <div class="field_wrapper">
             <label for="id_section">Section</label>
-            {{ form.section }}
-            <div class="tooltip">
-                Do you have a section code? Up to 20 characters allowed.
-            </div>
+            <input id="id_section" type="text" name="section" maxlength="12" data-title="Class Section" data-content="Do you have a section code? Up to 20 characters allowed.">
             {{ form.section.errors }}
         </div>
 
         <div class="field_wrapper">
             <label for="id_room_no">Room No</label>
-            {{ form.room_no }}
-            <div class="tooltip">
-                Are y'all gonna meet up somewhere? Up to 20 characters allowed.
-            </div>
+            <input id="id_room_no" type="text" name="room_no" maxlength="12" data-title="Classroom" data-content="Are y&rsquo;all gonna meet up somewhere? Up to 20 characters allowed.">
             {{ form.room_no.errors }}
         </div>
 
         <div class="field_wrapper">
             <label for="id_website">Associated Web Site Address</label>
-            {{ form.website }}
-            <div class="tooltip">
-                Enter an address for any other Web site associated with this class.
-            </div>
+            <input id="id_website" type="text" name="website" maxlength="12" data-title="Web Site" data-content="Enter an address for any other Web site associated with this class.">
             {{ form.website.errors }}
         </div>
     </fieldset>
