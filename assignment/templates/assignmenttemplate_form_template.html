@@ -8,50 +8,25 @@
 {% block javascript_additional %}
 <script type="text/javascript" src="/_/js/markitup/jquery.markitup.js"></script>
 <script type="text/javascript" src="/_/js/markitup/sets/markdown/set.js"></script>
-<script type="text/javascript" src="/_/js/jquery.simplyCountable.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        $('textarea').markItUp(mySettings)
+        $('textarea').markItUp(mySettings);
 
-        $('input').focus(function(){
-            $(this).parent().addClass('highlight');
-        });
-
-        $('input').blur(function(){
-            $(this).parent().removeClass('highlight');
-        });
-
-        /*$("#assignment_template_creation :input").tooltip({
-            position: "center right",
-            offset: [-2, 10],
-            effect: "fade",
-            opacity: 0.7
-        });*/
-
-        $('textarea#id_objectives').simplyCountable({ counter: '#chrm1', maxCount: 15000, overClass: 'go_red', safeClass: 'go_green' });
-        $('textarea#id_prompt').simplyCountable({ counter: '#chrm2', maxCount: 15000, overClass: 'go_red', safeClass: 'go_green' });
-        $('textarea#id_rubric').simplyCountable({ counter: '#chrm3', maxCount: 15000, overClass: 'go_red', safeClass: 'go_green' });
+        $('input, textarea').popover({ 'trigger': 'focus' });
     });
 </script>
 {% endblock %}
 
-{% block nav %}
-<h1>Your Library</h1>
-<div id="context_navigation">
-    <a href="/library/catalog">Catalog</a> &#x7c;
-    <a href="/dashboard/">Dashboard</a>
-</div>
-{% endblock %}
-
 {% block content %}
+    <h1>Create Assignment Template</h1>
+    <ul class="nav nav-pills">
+        <li><a href="/home/">Home</a></li>
+        <li><a href="/library/catalog">Library</a></li>
+    </ul>
 
     <form id="assignment_template_creation" action="{% block form_action %}{% endblock %}" method="post">
         {% csrf_token %}
         {{ form.non_field_errors }}
-
-        <fieldset class="form_title">
-            <legend>{% block form_title %}{% endblock %}</legend>
-        </fieldset>
 
         <div class="form_section_wrapper">
         <fieldset>
@@ -62,10 +37,7 @@
 
             <div class="field_wrapper">
                 <label for="id_objectives">Name <span class="req">*</span></label>
-                {{ form.name }}
-                <div class="tooltip">
-                    What is the assignment's name?
-                </div>
+                <input id="id_name" type="text" name="name" maxlength="12" data-title="Assignment Name" data-content="What is the assignment's name?">
                 {{ form.name.errors }}
             </div>
         </fieldset>
@@ -73,54 +45,15 @@
 
         <div class="form_section_wrapper">
         <fieldset>
-            <legend>2. Objectives</legend>
+            <legend>2. Text</legend>
             <div class="fieldset_desc">
                 {% block objectives_hint %}{% endblock %}
             </div>
 
             <div class="field_wrapper">
-                <label for="id_objectives">Objectives :: <span id="chrm1" class="chars_remaining"></span> characters remaining</label>
-                {{ form.objectives }}
-                <div class="tooltip">
-                    What does the student have to do? In what order?
-                </div>
-                {{ form.objectives.errors }}
-            </div>
-        </fieldset>
-        </div>
-
-        <div class="form_section_wrapper">
-        <fieldset>
-            <legend>3. Prompt</legend>
-            <div class="fieldset_desc">
-                {% block prompt_hint %}{% endblock %}
-            </div>
-
-            <div class="field_wrapper">
-                <label for="id_prompt">Prompt :: <span id="chrm2" class="chars_remaining"></span> characters remaining</label>
-                {{ form.prompt }}
-                <div class="tooltip">
-                    What does the student have to do? In what order?
-                </div>
-                {{ form.prompt.errors }}
-            </div>
-        </fieldset>
-        </div>
-
-        <div class="form_section_wrapper">
-        <fieldset>
-            <legend>4. Rubric</legend>
-            <div class="fieldset_desc">
-                {% block rubric_hint %}{% endblock %}
-            </div>
-
-            <div class="field_wrapper">
-                <label for="id_rubric">Rubric :: <span id="chrm3" class="chars_remaining"></span> characters remaining</label>
-                {{ form.rubric }}
-                <div class="tooltip">
-                    How will this assignment be graded?
-                </div>
-                {{ form.rubric.errors }}
+                <label for="id_text">Objectives</label>
+                <textarea id="id_text" rows="10" cols="40" name="text" class="markItUpEditor" data-title="Assignment Text" data-content="What does the student have to do? In what order?"></textarea>
+                {{ form.text.errors }}
             </div>
         </fieldset>
         </div>
