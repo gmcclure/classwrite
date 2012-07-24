@@ -13,43 +13,21 @@
     $(document).ready(function(){
         $('textarea').markItUp(mySettings)
 
-        $('input').focus(function(){
-            $(this).parent().addClass('highlight');
-        });
-
-        $('input').blur(function(){
-            $(this).parent().removeClass('highlight');
-        });
-
-        /*$("#assignment_template_edit :input").tooltip({
-            position: "center right",
-            offset: [-2, 10],
-            effect: "fade",
-            opacity: 0.7
-        });*/
-
         $('textarea#id_text').simplyCountable({ counter: '#chrm1', maxCount: 50000, overClass: 'go_red', safeClass: 'go_green' });
     });
 </script>
 {% endblock %}
 
-{% block nav %}
-<h1>Your Library</h1>
-<div id="context_navigation">
-    <a href="/library/catalog">Catalog</a> &#x7c;
-    <a href="/dashboard/">Dashboard</a>
-</div>
-{% endblock %}
-
 {% block content %}
+    <h1>{% block form_title %}{% endblock %}</h1>
+    <ul class="nav nav-pills">
+        <li><a href="/home/">Home</a></li>
+        <li><a href="/library/catalog">Library</a></li>
+    </ul>
 
     <form id="assignment_template_edit" action="{% block form_action %}{% endblock %}" method="post">
         {% csrf_token %}
         {{ form.non_field_errors }}
-
-        <fieldset class="form_title">
-            <legend>{% block form_title %}{% endblock %}</legend>
-        </fieldset>
 
         <div class="form_section_wrapper">
         <fieldset>

@@ -19,4 +19,5 @@ urlpatterns = patterns('',
     (r'^assignment/', include(assignment.assignment_urls)),
     (r'^syllabus/', include(assignment.syllabus_urls)),
     (r'^library/catalog/', 'library.views.catalog'),
+    (r'^markdown/', 'util.filters.markdown_parser'),
 )
