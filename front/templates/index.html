@@ -20,11 +20,11 @@
 </div>
 {% endif %}
 
-{% if instructor_classes %}
+{% if instructor_courses %}
 <div class="well">
-    <h2>Instructor Classes</h2>
+    <h2>Instructor Courses</h2>
     <ul class="class_list">
-    {% for course in instructor_classes %}
+    {% for course in instructor_courses %}
     <li><a href="/course/{{ course.id }}/overview/">{{ course.code }}</a> <span class="sep">::</span> 
         <a href="/course/{{ course.id }}/overview/">Overview</a> <span class="sep">&#x7c;</span> <a href="/course/{{ course.id }}/overview/#syllabus">Syllabus</a> <span class="sep">&#x7c;</span> <a href="/course/{{ course.id }}/overview/#assignments">Assignments</a> <span class="sep">&#x7c;</span> <a href="/course/{{ course.id }}/calendar/">Calendar</a></li>
     {% endfor %}
@@ -33,16 +33,16 @@
 {% endif %}
 
 <div class="well">
-    <h2>Student Classes</h2>
+    <h2>Student Courses</h2>
     {% if student_courses %}
     <ul class="class_list">
     {% for course in student_courses %}
-    <li>{{ course.code }} :: Home &#x7c; Assignments &#x7c; Calendar &#x7c; Syllabus</li>
+    <li>{{ course.code }} :: Home &#x7c; Syllabus &#x7c; Assignments &#x7c; Calendar &#x7c;
     {% endfor %}
     </ul>
     {% else %}
     <ul class="messages">
-        <li class="info">You haven't taken any classes yet.</li>
+        <li class="info">You haven't taken any courses yet.</li>
     </ul>
     {% endif %}
 </div>

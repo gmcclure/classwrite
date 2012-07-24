@@ -13,10 +13,10 @@ def welcome(request):
 
 @login_required
 def index(request):
-    instructor_classes = Course.objects.filter(instructor=request.user.id)
-    student_classes = request.user.get_profile().classes
+    instructor_courses = Course.objects.filter(instructor=request.user.id)
+    student_courses = request.user.get_profile().classes
     return render_to_response('index.html',
-            { 'instructor_classes': instructor_classes, 'student_classes': student_classes.all() },
+            { 'instructor_courses': instructor_courses, 'student_courses': student_courses.all() },
             context_instance=RequestContext(request))
 
 def logout_session(request):

@@ -4,36 +4,17 @@
 <script type="text/javascript" src="/_/js/jquery.tools.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-            $('input, textarea').focus(function(){
-                $(this).parent().addClass('highlight');
-            });
-
-            $('input, textarea').blur(function(){
-                $(this).parent().removeClass('highlight');
-            });
-
-            $("#class_membership :input").tooltip({
-                position: "center right",
-                offset: [-2, 10],
-                effect: "fade",
-                opacity: 0.7
-            });
+        $('input').popover({ 'trigger': 'focus'});
     });
 </script>
 {% endblock %}
 
-{% block nav %}
-<h1>Class Management</h1>
-{% endblock %}
-
 {% block content %}
-    <form id="class_membership" action="/class/join/" method="post">
+    <h1>Join a Class</h1>
+
+    <form action="/course/join/" method="post">
         {% csrf_token %}
         {{ form.non_field_errors }}
-
-        <fieldset class="form_title">
-            <legend>Join a Class</legend>
-        </fieldset>
 
         <div class="form_section_wrapper">
         <fieldset>
@@ -45,19 +26,13 @@
 
             <div class="field_wrapper">
                 <label for="id_class_id">Class ID <span class="req">*</span></label>
-                {{ form.class_id }}
-                <div class="tooltip">
-                    Input the class ID here.
-                </div>
+                <input id="id_class_id" type="text" name="class_id" maxlength="12" data-title="Class ID" data-content="Input the class ID here. This will be provided by your instructor.">
                 {{ form.class_id.errors }}
             </div>
 
             <div class="field_wrapper">
                 <label for="id_class_password">Password <span class="req">*</span></label>
-                {{ form.class_password }}
-                <div class="tooltip">
-                    Class password here.
-                </div>
+                <input id="id_class_password" type="text" name="class_password" maxlength="12" data-title="Class ID" data-content="Class password here.">
                 {{ form.class_password.errors }}
             </div>
         </fieldset>
