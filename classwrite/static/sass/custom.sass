@@ -6,11 +6,15 @@ $navbarLinkColor           : #ffd673
 $navbarLinkColorHover      : #ffdf7f
 $cwBodyFontStack           : 'Cantarell', sans-serif
 $cwHeaderFontStack         : 'Lustria', serif
+$cwWarningColor            : red
 
 body
     font-family: $cwBodyFontStack
     #{headings(all)} 
         font-family: $cwHeaderFontStack
+
+.field_wrapper
+    padding-top: 8px
 
 .navbar
     color: white
@@ -64,3 +68,7 @@ body
     a.month_link 
         font-size: 20px
         margin: 0px 60px 0px 60px
+
+.errorlist li,
+.req
+    color: red
